@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+}
+
+a {
+    color: #000;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.box {
+    float: left;
+    width: 200%;
+    height: 100%;
+}
+
+.item {
+    float: left;
+    width: 50%;
+    height: 100%;
+    transition: all 1s;
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.iconfont-left,
+.iconfont-right {
+    position: absolute;
+    top: 38%;
+    font-size: 48px;
+}
+
+.iconfont-left {
+    left: 0;
+}
+
+.iconfont-right {
+    right: 0;
+}
+
+@font-face {
+    font-family: "iconfont";
+    src: url('fonts/iconfont.eot?t=1462428035');
+    /* IE9*/
+    src: url('fonts/iconfont.eot?t=1462428035#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('fonts/iconfont.woff?t=1462428035') format('woff'), /* chrome, firefox */
+    url('fonts/iconfont.ttf?t=1462428035') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('fonts/iconfont.svg?t=1462428035#iconfont') format('svg');
+    /* iOS 4.1- */
+}
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <div class="item">
+                <h3>item1</h3>
+            </div>
+            <div class="item">
+                <h3>item2</h3>
+            </div>
+            <div class="item">
+                <h3>item3</h3>
+            </div>
+            <div class="item">
+                <h3>item4</h3>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:;" class="button iconfont iconfont-left">&#xe605;</a>
+    <a href="javascript:;" class="button iconfont iconfont-right">&#xe68e;</a>
+    <ul class="list">
+        <li><a href="javascript:;">item1</a></li>
+        <li><a href="javascript:;">item2</a></li>
+        <li><a href="javascript:;">item3</a></li>
+        <li><a href="javascript:;">item4</a></li>
+    </ul>
+    <script src="http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+    <script>
+    $(function() {
+        var currInx = 1;
+        var itemLen = $('.item').length;
+
+        $('a.iconfont-left').on('click', function() {
+            aClickEvent('left');
+
+            $('.item').first().css('margin-left', '-50%');
+            $('.box').append($('.item').first().css('margin-left', 0));
+        });
+        $('a.iconfont-right').on('click', function() {
+            aClickEvent('right');
+
+            $('.item').first().before($('.item').last().css('margin-left', '-50%'));
+            $('.item').first().css('margin-left', 0);
+        });
+
+        function aClickEvent(lor) {
+            if (lor = 'left') {
+                currInx++;
+                if (currInx > itemLen) {
+                    currInx = 1;
+                }
+            } else {
+                currInx--;
+                if (currInx <= 0) {
+                    currInx = itemLen;
+                }
+            }
+
+            $('.list li').css('border', 'none');
+            $('.list li').eq(currInx - 1).css('border', '1px solid #eee');
+        }
+    });
+    </script>
+</body>
+
+</html>
