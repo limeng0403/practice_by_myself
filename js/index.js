@@ -16,7 +16,7 @@ $(function() {
     });
 
     function aClickEvent(lor) {
-        if (lor = 'left') {
+        if (lor == 'left') {
             currInx++;
             if (currInx > itemLen) {
                 currInx = 1;
@@ -28,7 +28,7 @@ $(function() {
             }
         }
 
-        $('.list li').css('border', 'none');
-        $('.list li').eq(currInx - 1).css('border', '1px solid #eee');
+        $('.list li').removeClass('curr');
+        $('.list li').eq(currInx - 1).addClass('curr');
     }
 });
